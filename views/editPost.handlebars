@@ -1,0 +1,22 @@
+{{#if (if_equals post.user_id user_id)}}
+<div id='form-page'>
+    <h2>Edit your Post</h2>
+    <p>Created on: {{format_date post.createdAt}}</p>
+    <form class="form edit-form">
+        <div class="form-group">
+            <label for="post-title">Title:</label>
+            <input class="form-input" type="textr=" id="post-title" value="{{post.title}}"/>
+        </div>
+        <div class="form-group" id='form-description'>
+            <label for="post-description">Description:</label>
+            <input class="form-input" type="text" id="post-description" value="{{post.description}}"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<script src="/js/postEdit.js"></script>
+{{else}}
+<a href='/'>Sorry you cannot edit this post please return to the main page</a>
+{{/if}}

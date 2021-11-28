@@ -1,0 +1,13 @@
+<h2>Your Previous Posts</h2>
+{{#each posts as |post|}}
+<div class="blog-post col-5">
+    <div class="display-flex" id="blog-title">
+        <a href='/post/{{id}}'>{{title}}</a>
+        <p>By: {{user.name}}</p>
+        <p>On: {{format_date createdAt}}</p>
+    </div>
+    <div id='blog-description'>
+        <p>{{description}}</p>
+    </div>
+</div>
+{{/each}}

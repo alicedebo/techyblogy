@@ -1,0 +1,57 @@
+<div class="blog-post col-5">
+    <div class="display-flex" id="blog-title">
+        <h3>{{post.title}}</h2>
+        <p>By: {{post.user.name}}</p>
+        <p>On: {{format_date post.createdAt}}</p>
+    </div>
+    <div id='blog-description'>
+        <p>{{post.description}}</p>
+    </div>
+</div>
+<div id='buttons'>
+    {{#if logged_in}}
+    <button class="btn btn-primary" id="comment-button">Add Comment</button>
+    {{/if}}
+
+    {{#if (if_equals post.user_id user_id)}}
+    <button class="btn btn-primary" id="update-button">Update</button>
+    <button class="btn btn-primary" id="delete-button">Delete</button>
+    {{/if}}
+</div>
+
+<h2>Comments</h2>
+{{#each comments as |comment|}}
+<div class="blog-post col-5">
+    <div class="display-flex" id="blog-title">
+        <h3>{{title}}</h2>
+        <p>By: {{user.name}}</p>
+        <p>On: {{format_date createdAt}}</p>
+    </div>
+    <div id='blog-description'>
+        <p>{{description}}</p>
+    </div>
+</div>
+{{/each}}
+
+<div class='hide comment' id="form-page">
+    <h2>Add your comment</h2>
+    <form class="form comment-form">
+        <div class="form-group">
+            <label for="comment-title">Title:</label>
+            <input class="form-input" type="textr=" id="comment-title" />
+        </div>
+        <div class="form-group">
+            <label for="comment-description">Description:</label>
+            <input class="form-input" type="text" id="comment-description" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/commentPost.js"></script>
+
+{{#if (if_equals post.user_id user_id)}}
+<script src="/js/updateDelete.js"></script>
+{{/if}}
