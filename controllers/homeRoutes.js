@@ -1,7 +1,8 @@
-const router = require('express').Router();
-const { Post, Comment, User } = require('../models');
-const withAuth = require('../utils/withAuth');
+const router = require("express").Router();
+const { User, Post, Comment } = require("../models");
+const withAuth = require("../utils/withAuth");
 
+//Sends the homepage
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({ include: User });
@@ -12,6 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Sends the login page
 router.get("/login", async (req, res) => {
   try {
     res.render("login");
@@ -20,6 +22,7 @@ router.get("/login", async (req, res) => {
   }
 });
 
+// Sends the dashboard page
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -33,6 +36,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
   }
 });
 
+// Sends a singular post page
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findOne({
@@ -58,6 +62,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
   }
 });
 
+// Sends create a post page
 router.get("/create", withAuth, async (req, res) => {
   res.render("createPost", {
     logged_in: req.session.logged_in,
